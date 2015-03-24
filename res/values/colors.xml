@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <color name="md__transparent">#00000000</color>
+    <color name="md__defaultBackground">#FF555555</color>
+    <color name="megenta_red">#a9003e</color>
+    <color name="pink">#f4185e</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="red">#FC0037</color>
+    <color name="blackbrown">#2f2525</color>
+    <color name="darkgrey">#666666</color>
+    <color name="lightgrey">#c7c7c7</color>
+    <color name="darkgrey2">#9F9F9F</color>
+    <color name="Green">#1BF416</color>
+    <color name="lightblue">#D7DAFA</color>
+    <color name="messagerow">#B9B9BD</color>
+    <color name="messageback">#8AC4E5</color>
+    <color name="messagesender">#4C566C</color>
+    <color name="header">#3444B6</color>
+    <color name="app_marine">#3b527c</color>
+    <color name="app_marine_dark">#152a59</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#23cf34</color>
+    <color name="title_name">#6c9b1e</color>
+    <color name="lite_blue">#4E78A0</color>
+    <color name="blue">#e3f6fd</color>
+    <color name="blue_dark">#076893</color>
+    <color name="grey">#808080</color>
+    <color name="grey2">#525252</color>
+    <color name="forgot_pass">#ff6d01</color>
+    <color name="gray">#7b7b7b</color>
+    <color name="header_color">#40d0e1</color>
+    <color name="orange">#ff8000</color>
+    <!-- <color name="cal_purple_light">#e3e2e5</color> -->
+
+
+    <!-- <color name="cal_seperator">#ffcd33</color> -->
+    <color name="cal_seperator">#ADADAD</color>
+    <color name="cal_activeText">#e6d6a2</color>
+    <!-- <color name="cal_purple_dark">#d3cdd7</color> -->
+    <color name="cal_inactiveText">#ffbf62</color>
+    <color name="txt_color">#544f3c</color>
+    <!-- <color name="cal_select">#e6d6a2</color> -->
+    <color name="cal_select">#EAE8E9</color>
+<!--     <color name="cal_month">#fff491</color> -->
+	<color name="cal_month">#FFF</color>
+    <color name="days">#ffe6c1</color>
+    <color name="current_date">#ffcd33</color>
+    <color name="select_date">#ffbf62</color>
+
+    <!-- barcode -->
+    <color name="cal_blue">#38B0FC</color>
+    <color name="bg_row">#EAE8E9</color>
+
+</resources>

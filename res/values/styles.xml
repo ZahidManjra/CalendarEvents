@@ -1,0 +1,126 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="tab">
+        <item name="android:textSize">11sp</item>
+        <item name="android:layout_marginTop"> 1dp </item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="tab_famiglie">
+        <item name="android:textSize">@dimen/txt6</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="name">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/txt6</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Day">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">#cccccc</item>
+        <item name="android:textSize">50dp</item>
+        <!-- <item name="android:textSize">@dimen/txt4</item> -->
+
+
+        <!-- <item name="android:id">@+id/calendar_textDay</item> -->
+    </style>
+
+    <style name="PayType_AutoPaid">
+        <item name="android:layout_width">4dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@drawable/event_dot</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="PayType_ManualPaid">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@color/red</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="PayType">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:orientation">vertical</item>
+
+        <!-- <item name="android:layout_marginTop">4dp</item> -->
+        <!-- <item name="android:padding">2dp</item> -->
+        <!-- <item name="android:layout_marginRight">5dp</item> -->
+    </style>
+
+    <style name="Total">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt4</item>
+        <item name="android:layout_margin">2dp</item>
+        <!-- <item name="android:layout_below">@+id/calendar_textDay</item> -->
+        <item name="android:text"></item>
+    </style>
+
+    <style name="RltvLayout_Day">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/cal_select</item>
+    </style>
+
+    <style name="RltvLayout_Week">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@color/cal_blue</item>
+    </style>
+
+    <style name="DayNames">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/txt4</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="HorizontalSep">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@color/cal_seperator</item>
+    </style>
+
+    <style name="VerticleSep">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@color/cal_seperator</item>
+    </style>
+    
+    <style name="button">
+        <item name="android:background">@drawable/bg_today</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:textSize">@dimen/txt6</item>
+    </style>
+</resources>

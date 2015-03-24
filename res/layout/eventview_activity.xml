@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header" >
+
+        <TextView
+            android:id="@+id/tv_ev_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/txt0"
+            android:layout_marginRight="@dimen/txt0"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="View Event"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt6"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/lrn_ev_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/txt_pad" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_header_back" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lrn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/m1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/txt0"
+                android:src="@drawable/ic_header_share" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ScrollView
+            android:id="@+id/sv_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false" 
+    		android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:paddingRight="2dp"
+            android:fillViewport="true" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/lrn_ev_img"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/img_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="2dp"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/txt0"
+                        android:layout_weight="0.5"
+                        android:text="Event Name:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt4"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_ev_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/txt0"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_ev_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/txt0"
+                        android:layout_weight="0.5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt4" />
+
+                    <TextView
+                        android:id="@+id/tv_ev_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/txt0"
+                        android:layout_weight="0.8"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt4" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt0"
+                    android:text="Event Description:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt4" />
+
+                <TextView
+                    android:id="@+id/tv_ev_desc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt0"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt2" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/btn_ev_edit"
+                        style="@style/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/txt0"
+                        android:layout_marginRight="@dimen/txt0"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/txt0"
+                        android:paddingTop="@dimen/txt0"
+                        android:text="Edit"
+                        android:textSize="@dimen/txt6" />
+
+                    <Button
+                        android:id="@+id/btn_ev_delete"
+                        style="@style/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/txt0"
+                        android:layout_marginRight="@dimen/txt0"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/txt0"
+                        android:paddingTop="@dimen/txt0"
+                        android:text="Delete"
+                        android:textSize="@dimen/txt6" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.calendar.TouchView.TouchImageView
+            android:id="@+id/img_photo_full"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/black"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

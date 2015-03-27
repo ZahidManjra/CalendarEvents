@@ -30,12 +30,12 @@ import com.calendar.CalendarWrapper.OnDateChangedListener;
 import com.calendar.share.Share;
 import com.calendardemo.R;
 import com.calendarevent.Cale;
-import com.calendarevent.Event_View;
+import com.calendarevent.EventView;
 import com.calendarevent.Splash;
 
 public class CalendarView extends LinearLayout {
 
-	//declare variables for to check calendar loaded or not
+	//declare variables to check if the calendar is loaded or not
 	boolean first_load;
 	
 	Context c;
@@ -49,33 +49,33 @@ public class CalendarView extends LinearLayout {
 	private final int MONTH_VIEW = 2;
 	private final int DAY_VIEW = 1;
 	private final int ITEM_VIEW = 0;
-
-	/**********************************************************************************************************/
+	
 	// declare variables for system year,month,day
 	int sysYear;
 	int sysMonth;
 	int sysDay;
-	/**********************************************************************************************************/
 
-	// declare _calendar variables for manage the day of current month and privous or next moths of days
+	// declare _calendar variables to manage the day of current, previous and following month
 	private CalendarWrapper _calendar;
-	// declare _days variables for maintain the day view (showing with event then display line)
+	
+	// declare _days variables to maintain the day view
 	private TableLayout _days;
 	
-	// declare _events variables for  available event details
+	// declare _events variables for available events
 	private LinearLayout _events;
 	
-	// declare _up variables for  year
+	// declare _up variables for year
 	private Button _up;
-	
-	// declare _prev variables for  go to the privous month
+
+	// declare _prev variables to go to the previous month
 	private ImageView _prev;
 	// declare _prev variables for  go to the next month
 	private ImageView _next;
 	
-	// declare _onMonthChangedListener for  change the calendar month
+	// declare _onMonthChangedListener for change of calendar month
 	private OnMonthChangedListener _onMonthChangedListener;
-	// declare _onSelectedDayChangedListener for  get current select day of calendar
+	
+	// declare _onSelectedDayChangedListener to get current selected day from calendar
 	private OnSelectedDayChangedListener _onSelectedDayChangedListener;
 	
 	// declare _currentView for current view type(months,year..etc.)
@@ -83,22 +83,20 @@ public class CalendarView extends LinearLayout {
 	private int _currentYear;
 	private int _currentMonth;
 	
-	// declare initializing for view are created or not
+	// declare initialising whether view is created or not
 	private Boolean initializing = true;
-	// declare flgMonthChanged for check month change or not
+	
+	// declare flgMonthChanged to check whether the month  is changed or not
 	public static Boolean flgMonthChanged = true;
 	
-	// declare weekRows variable  for month of no week rows are created 
+	// declare weekRows variable for the number of week rows created for each month
 	private int weekRows;
 	
 	// declare _dayCell object array of the Daycell class
 	DayCell[][] _dayCell = new DayCell[6][7];
 
-	/**********************************************************************************************************/
-
-	/**
-	 * 	This method use to get Current day, months and year.
-	 */
+	
+	//This method is used to get Current day, months and year.
 	public void SysDate() 
 	{
 		 // create c object of Calendar
@@ -113,8 +111,7 @@ public class CalendarView extends LinearLayout {
 
 	}
 
-	/**********************************************************************************************************/
-
+	
 	public CalendarView(Context context) {
 		super(context);
 		c = context;
@@ -190,16 +187,13 @@ public class CalendarView extends LinearLayout {
 			if (tvDay.getTextColors() == ColorStateList.valueOf(getResources().getColor(R.color.black))) {
 
 				rltvLayout.setBackgroundColor(getResources().getColor(R.color.cal_select));
-
-				// rltvLayout.setBackgroundColor(R.drawable.cal_light);
+				
 
 			} else {
 
 				rltvLayout.setBackgroundColor(getResources().getColor(R.color.cal_month));
-			
-				//TODO : Hide Day not in  Months
+				
 				tvDay.setTextColor(Color.WHITE);
-				// rltvLayout.setBackgroundColor(R.drawable.cal_dark);
 
 			}
 
@@ -331,7 +325,7 @@ public class CalendarView extends LinearLayout {
 			first_load = false;
 
 			new_setTransactionRow(sysYear, sysMonth + 1, sysDay);
-			// new_setTransactionRow_g(sysYear, sysMonth + 1, sysDay);
+		
 		}
 		flgMonthChanged = false;
 	}
@@ -362,10 +356,9 @@ public class CalendarView extends LinearLayout {
 		btn_today = (Button) v.findViewById(R.id.btn_today);
 		first_load = true;
 
-		/*********************************************************************************************************/
 		SysDate();
 		refreshCurrentDate();
-		/**********************************************************************************************************/
+	
 		// Days Table
 		for (int i = 0; i < 1; i++) 
 		{ 	// Rows
@@ -373,11 +366,11 @@ public class CalendarView extends LinearLayout {
 
 			for (int j = 0; j < 7; j++) 
 			{ 	// Columns
-				Boolean header = i == 0; // First row is weekday headers
+				Boolean header = i == 0; // First row is the days of the week
 				RelativeLayout rltvLayout = (RelativeLayout) tr.getChildAt(j);
 				if (!header) {
 					rltvLayout.setClickable(true);
-					rltvLayout.setOnClickListener(_dayClicked);     // define day onClick Listener
+					rltvLayout.setOnClickListener(_dayClicked); // define day onClick Listener
 				}
 			}
 		}
@@ -403,8 +396,8 @@ public class CalendarView extends LinearLayout {
 	public void refreshView()
 	{
 		final Calendar c = Calendar.getInstance();
+		
 		//c.set(sysYear, sysMonth, sysDay);
-
 		date = sysDay;
 		month = sysMonth;
 		year = sysYear;
@@ -445,19 +438,19 @@ public class CalendarView extends LinearLayout {
 			}
 		}
 		_calendarView.setDaysWithEvents(new CalendarDayMarker[] { new CalendarDayMarker(c, Color.BLACK) });
-//		Toast.makeText(getContext(), "Today date", Toast.LENGTH_SHORT).show();
+
 	}
 	private OnDateChangedListener _dateChanged = new OnDateChangedListener() {
 		public void onDateChanged(CalendarWrapper sc) {
 
 			Boolean monthChanged = _currentYear != sc.getYear()
 					|| _currentMonth != sc.getMonth();
-
 			// Log.e("", "msg=====" + sc.getMonth());
+
 			if (monthChanged) {
 				refreshDayCells();
 				invokeMonthChangedListener();
-				// setOnMonthChangedListener();
+				// setinvokeMonthChangedListener();
 			}
 
 			refreshCurrentDate();
@@ -510,7 +503,7 @@ public class CalendarView extends LinearLayout {
 		}
 	};
 
-	// For change the date select date
+	// change of selected date
 	private OnClickListener _dayClicked = new OnClickListener() {
 		public void onClick(View v) {
 
@@ -538,7 +531,7 @@ public class CalendarView extends LinearLayout {
 			// Log.e("", "msg cal====" + tag[1]);
 			final CalendarView _calendarView = (CalendarView) findViewById(R.id.forecast_calendarView);
 
-			// saves the clicked date when month is changed..
+			// saves the clicked date when month is changed
 			_calendarView
 					.setOnMonthChangedListener(new OnMonthChangedListener() {
 						public void onMonthChanged(CalendarView view) {
@@ -560,7 +553,7 @@ public class CalendarView extends LinearLayout {
 
 		int[] dayGrid = _calendar.get7x6DayArray();
 		int monthAdd = -1;
-		int row = 1; // Skip weekday header row
+		int row = 1; // Skip days of week header row
 		int col = 0;
 		Boolean flgDeleteRow = false;
 
@@ -596,14 +589,12 @@ public class CalendarView extends LinearLayout {
 				} 
 				else 
 				{
-					// tvDay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
+					
 					weekRows = 6;
 					rltvLayout.setVisibility(View.VISIBLE);
-
-					/****************************** Date Text ************************************/
+					
 					TextView tv = (TextView) rltvLayout.getChildAt(2);
 					tv.setText(String.valueOf(day));
-					// tv.setTypeface(Splash.font);
 					tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, 1);
 
 					for (int k = 0; k < 6; k++)
@@ -709,20 +700,16 @@ public class CalendarView extends LinearLayout {
 			_onSelectedDayChangedListener.onSelectedDayChanged(this);
 	}
 
-	/**
-	 *  User for Create Event Row on Calendarn Event List in Cale.java
-	 * @param year
-	 * @param month
-	 * @param day
-	 */
+	// Used to Create Event Row on Calendar Event List in Cale.java
+	
 	@SuppressLint("SimpleDateFormat")
 	public void new_setTransactionRow(int year, int month, int day) {
 
-		  // create linf variable for use with change layout of event rows
+		  // create linf variable to change the layout of event rows
 		LayoutInflater linf = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		linf = LayoutInflater.from(getContext());
 		
-		 // remove event item in lnrLayout_EventList(contain event row view)
+		 // remove event in lnrLayout_EventList (contain event row view)
 		Cale.lnrLayout_EventList.removeAllViews();
 		
 		//Load Event_rows in lnrLayout_EventList layout XML
@@ -730,25 +717,25 @@ public class CalendarView extends LinearLayout {
 			//get row for getting the year,month and day from date
 			String row[] = Cale.arr_event_date.get(i).toString().split("-");
 			
-			//check the current date with event date if match then create event row view
+			//check the current date with event date if this matches then create event row view
 			if (Integer.parseInt(row[0]) == year && Integer.parseInt(row[1]) == month && Integer.parseInt(row[2]) == day) {
 				 // set upload layout for Event item row
 				final View event_row = linf.inflate(R.layout.row_main, null);
 				try {
 
-					 // link row_img  to imageviews in the layout in row_main.XML for set event image
+					 // link row_img to ImageView in the layout in row_main.XML to set event image
 					ImageView row_img = (ImageView)event_row.findViewById(R.id.row_img);
 					
-					// link tv_name  to TextView in the layout in row_main.XML for set event name
+					// link tv_name to TextView in the layout in row_main.XML to set event name
 					TextView tv_name = (TextView) event_row.findViewById(R.id.row_name);
 					
-					// link tv_datetime  to TextView in the layout in row_main.XML for set event name
+					// link tv_datetime to TextView in the layout in row_main.XML to set event date and time
 					TextView tv_datetime = (TextView) event_row.findViewById(R.id.row_date_time);
 					
-					// link tv_desc  to TextView in the layout in row_main.XML for set event name
+					// link tv_desc to TextView in the layout in row_main.XML to set event description
 					TextView tv_desc = (TextView) event_row.findViewById(R.id.row_desc);
 					
-					// create width variable for set the event image view width and mDisplay link to the Cale.java
+					// create width variable to set the event image view width and mDisplay to link to the Cale.java
 					final int width  = Cale.mDisplay.getWidth();
 					row_img.getLayoutParams().width = (int) (width * 0.2);
 					row_img.getLayoutParams().height = (int) (width * 0.2);
@@ -757,8 +744,8 @@ public class CalendarView extends LinearLayout {
 					tv_name.setText(Cale.arr_event_name.get(i));
 					//update event time
 					tv_datetime.setText(Cale.arr_event_time.get(i));
-					//update.event descriptions
-					tv_desc.setText(Cale.arr_event_descripation.get(i));
+					//update.event description
+					tv_desc.setText(Cale.arr_event_description.get(i));
 					
 					//set font
 					tv_name.setTypeface(Splash.HELVETICA);
@@ -778,19 +765,19 @@ public class CalendarView extends LinearLayout {
 
 				final int j = i;
 				
-				//If select any event item then swipe the Event_view activity with pass the event item param
+	
 				event_row.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) 
 					{
 						// create intent to start the Event_View activity on select event row
-						Intent viewEventIntent = new Intent(getContext(),Event_View.class);
-						//pass the value of event data
+						Intent viewEventIntent = new Intent(getContext(),EventView.class);
 						
+						//pass the value of event data
 						viewEventIntent.putExtra(Share.CALENDAR.ID, Cale.arr_event_id.get(j));
 						viewEventIntent.putExtra(Share.CALENDAR.EVENT_NAME,Cale.arr_event_name.get(j));
 						viewEventIntent.putExtra(Share.CALENDAR.EVENT_TIME,Cale.arr_event_time.get(j));
-						viewEventIntent.putExtra(Share.CALENDAR.EVENT_DES,Cale.arr_event_descripation.get(j));
+						viewEventIntent.putExtra(Share.CALENDAR.EVENT_DES,Cale.arr_event_description.get(j));
 						viewEventIntent.putExtra(Share.CALENDAR.EVENT_IMG_PATH,Cale.arr_event_img_path.get(j));
 						viewEventIntent.putExtra(Share.CALENDAR.EVENT_DATE,Cale.arr_event_date.get(j));
 						
@@ -799,7 +786,7 @@ public class CalendarView extends LinearLayout {
 					}
 				});
 				
-				//add event row item in lnrLayout_EventList layout link to the Cale.java
+				//add event row item in lnrLayout_EventList layout linked to the Cale.java
 				Cale.lnrLayout_EventList.addView(event_row);
 			}
 		}

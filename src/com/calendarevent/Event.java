@@ -53,7 +53,7 @@ public class Event extends Activity implements OnClickListener {
 	// declare back button layout
 	private LinearLayout lnr_back;
 
-	// declare lnr_img for contain the imageview
+	// declare lnr_img 
 	private LinearLayout lnr_img;
 
 	// declare Event Fields variables
@@ -62,13 +62,13 @@ public class Event extends Activity implements OnClickListener {
 	private EditText et_desc;
 	private EditText et_date;
 
-	// declare ImageView for display image
+	// declare ImageView to display image
 	private ImageView img_event;
 
 	// declare save Button variables
 	private Button btn_save;
 
-	// declare Bitmap set for Imageview
+	// declare Bitmap set for ImageView
 	private Bitmap imageBitmap;
 
 	// declare variable for image path
@@ -77,32 +77,32 @@ public class Event extends Activity implements OnClickListener {
 	// declare Database variable
 	private DBAdapter dba;
 
-	// declare isEdit variable for check action of edit or add button
+	// declare isEdit variable to check action of edit or add button
 	private Boolean isEdit = false;
 
-	// declare screenWidth variable get current Screen Width
+	// declare screenWidth variable 
 	private int screenWidth;
 
-	// declare variable getting current event id if edit mode
+	// declare variable to get current event id if in edit mode
 	private String id = "";
 
-	// declare variable set date
+	// declare variable to set date
 	private int pYear;
 	private int pMonth;
 	private int pDay;
 
-	// declare hour and minute are manage current time
+	// declare hour and minute to manage current time
 	private static int hour, minute;
 
 	// declare variable for event time
 	private String time = "00:00";
 
-	// declare Calendar variable for manage date and time
+	// declare Calendar variable to manage date and time
 	private Calendar c;
 
-	// declare request code for start gallary Activity.
+	// declare request code to start gallery activity.
 	private static int RESULT_LOAD_IMG = 1;
-	// declare request code for start camera Activity.
+	// declare request code to start camera activity.
 	private static int TAKE_PICTURE = 2;
 
 	Uri imageUri;
@@ -114,51 +114,51 @@ public class Event extends Activity implements OnClickListener {
 		// set upload layout
 		setContentView(R.layout.event_activity);
 
-		// initialize an instance (DBAdapter)
+		// initialise an instance (DBAdapter)
 		dba = new DBAdapter(getApplicationContext());
 
-		// initialize all View
+		// initialise all View
 		init();
 	}
 
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
 	void init() {
-		// create Display variable for get current device screen width
+		// create Display variable to get current device screen width
 		Display display = getWindowManager().getDefaultDisplay();
 		screenWidth = display.getWidth();
 
-		// create BitmapDrawable variable for get current headar image
+		// create BitmapDrawable variable to get current header image
 		BitmapDrawable bd = (BitmapDrawable) getResources().getDrawable(
 				R.drawable.bg_header);
-		// create height variable use for get current headar image height
+		// create height variable to get current header image height
 		int height = bd.getBitmap().getHeight();
 
-		// create Calendar variable for get current date and time
+		// create Calendar variable to get current date and time
 		c = Calendar.getInstance();
-		// create hour variable for get current hours
+		// create hour variable to get current hour
 		hour = c.get(Calendar.HOUR_OF_DAY);
-		// create minute variable for get current minute
+		// create minute variable to get current minute
 		minute = c.get(Calendar.MINUTE);
 
-		// link tv_title variables to corresponding textviews in the layout XML
+		// link tv_title variables to correspond to TextViews in the layout XML
 		tv_title = (TextView) findViewById(R.id.tv_event_title);
-		// link lnr_back variables to corresponding LinearLayout in the layout
+		// link lnr_back variables to correspond to LinearLayout in the layout
 		// XML
 		lnr_back = (LinearLayout) findViewById(R.id.lrn_eve_back);
-		// link lnr_img variables to corresponding LinearLayout in the layout
+		// link lnr_img variables to correspond to LinearLayout in the layout
 		// XML
 		lnr_img = (LinearLayout) findViewById(R.id.lnr_img);
-		// link img_event variables to corresponding ImageView in the layout XML
+		// link img_event variables to correspond to ImageView in the layout XML
 		img_event = (ImageView) findViewById(R.id.img_eve_photo);
 
-		// link EditText variables to corresponding EditText in the layout XML
+		// link EditText variables to correspond to EditText in the layout XML
 		et_name = (EditText) findViewById(R.id.et_eve_name);
 		et_date = (EditText) findViewById(R.id.et_eve_date);
 		et_time = (EditText) findViewById(R.id.et_eve_time);
 		et_desc = (EditText) findViewById(R.id.et_eve_decs);
 
-		// link btn_save variables to corresponding Button in the layout XML
+		// link btn_save variables to correspond to the Button in the layout XML
 		btn_save = (Button) findViewById(R.id.btn_eve_save);
 
 		// update lnr_back height (increase Clickable area)
@@ -166,12 +166,12 @@ public class Event extends Activity implements OnClickListener {
 		// update lnr_img height
 		lnr_img.getLayoutParams().height = (int) (screenWidth * 0.5);
 
-		// set filter for define length after can not store character
+		// set filter to define character length 
 		et_name.setFilters(new InputFilter[] { new InputFilter.LengthFilter(200) });
 		et_desc.setFilters(new InputFilter[] { new InputFilter.LengthFilter(
 				1500) });
 
-		// set selected date of calendar
+		// set selected date to calendar
 		et_date.setText("" + pad(Share.date) + "-" + pad(Share.month) + "-"
 				+ Share.year);
 		// set current time
@@ -198,7 +198,7 @@ public class Event extends Activity implements OnClickListener {
 			// update Header text
 			tv_title.setText("Edit Event");
 
-			// create id variable for passing param for update with row
+			// create id variable for passing parameter to update the row
 			id = extras.getString(Share.CALENDAR.ID);
 			time = extras.getString(Share.CALENDAR.EVENT_TIME);
 			path = extras.getString(Share.CALENDAR.EVENT_IMG_PATH);
@@ -207,7 +207,7 @@ public class Event extends Activity implements OnClickListener {
 			et_name.setText(extras.getString(Share.CALENDAR.EVENT_NAME));
 			// set event time
 			et_time.setText(time);
-			// set event descriptions
+			// set event description
 			et_desc.setText(extras.getString(Share.CALENDAR.EVENT_DES));
 
 			// create SimpleDateFormat for date format
@@ -217,8 +217,7 @@ public class Event extends Activity implements OnClickListener {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			// Event edit mode then update date of calendar variable with date
-			// and time
+			// edit event mode then update date of calendar variable with date and time
 			c.setTime(d);
 			pYear = c.get(Calendar.YEAR);
 			pMonth = c.get(Calendar.MONTH + 1);
@@ -226,17 +225,16 @@ public class Event extends Activity implements OnClickListener {
 			hour = Integer.valueOf(time.substring(0, 2));
 			minute = Integer.valueOf(time.substring(5, 7));
 
-			// check time with PM then add 12 hours becase calendar variable set
-			// with 24 hours format
+			// check time with PM then add 12 hours as the calendar variable set is with a 24 hours format
 			if (time.substring(8, 10).equals("PM"))
 				hour = hour + 12;
 
-			// load sdcard
+			// load sd card
 			if (Share.ensureSDCardAccess()) {
 				File image = new File(path);
 				// check file is available or not
 				if (image.exists()) {
-					// file is found then set fix imageview size using current
+					// if file is found then set fix ImageView size using current
 					// device screen width
 					img_event.getLayoutParams().width = (int) (screenWidth * 0.5);
 					img_event.getLayoutParams().height = (int) (screenWidth * 0.5);
@@ -246,14 +244,14 @@ public class Event extends Activity implements OnClickListener {
 				}
 			}
 		} else {
-			// if add event mode then set current date
+			// if in add event screen then set current date
 			c.setTime(d);
 			pYear = c.get(Calendar.YEAR);
 			pMonth = c.get(Calendar.MONTH) + 1;
 			pDay = c.get(Calendar.DAY_OF_MONTH);
 		}
 
-		// initialize text font
+		// initialise text font
 		setTypeface();
 	}
 
@@ -263,13 +261,12 @@ public class Event extends Activity implements OnClickListener {
 
 		if (v == lnr_back) {
 			// create intent to start the Cale activity on button press
-			// (lnr_back)
 			Intent calIntent = new Intent(Event.this, Cale.class);
 			startActivity(calIntent);
 			// close Event activity
 			finish();
 		} else if (v == et_time) {
-			// creating a dialog when click on et_time view
+			// create a dialog when click on et_time view
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			final TimePicker picker = new TimePicker(this);
 
@@ -277,12 +274,12 @@ public class Event extends Activity implements OnClickListener {
 			picker.setCurrentHour(hour);
 			picker.setCurrentMinute(minute);
 
-			// set Title for timepiker dialog
+			// set Title for time picker dialog
 			builder.setTitle("Select Time");
-			// set timepiker view in alert dialog
+			// set time picker view in alert dialog
 			builder.setView(picker);
 
-			// if press the Set button with update the current time
+			// upon press of Set button then update the current time
 			builder.setPositiveButton("Set",
 					new DialogInterface.OnClickListener() {
 						@Override
@@ -294,7 +291,7 @@ public class Event extends Activity implements OnClickListener {
 							et_time.setText(showTime(hour, minute));
 						}
 					});
-			// if press the Cancel button can't update time
+			// upon press of the Cancel button can't update time
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
 						@Override
@@ -308,19 +305,19 @@ public class Event extends Activity implements OnClickListener {
 			if (!builder.show().isShowing())
 				builder.show();
 		} else if (v == et_date) {
-			// creating a dialog when click on et_date view
+			// create a dialog when click on et_date view
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			final DatePicker picker = new DatePicker(this);
 
 			// set year,month and day in picker
 			picker.updateDate(Share.year, Share.month - 1, Share.date);
-			// show only date
+			// show date only
 			picker.setCalendarViewShown(false);
 			// set Title text of alert dialog
 			builder.setTitle("Select Date");
 			// set datepicker view in alert dialog
 			builder.setView(picker);
-			// if press the Set button with update the current date
+			// upon press of Set button then update the current date
 			builder.setPositiveButton("Set",
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
@@ -339,7 +336,7 @@ public class Event extends Activity implements OnClickListener {
 									+ "-" + pYear);
 						}
 					});
-			// if press the Cancel button can't update time
+			// upon press of the Cancel button can't update date
 			builder.setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
@@ -355,19 +352,17 @@ public class Event extends Activity implements OnClickListener {
 
 		} else if (v == lnr_img) {
 
-			// create dialog for select image modes are gallary or photo
+			// create dialog for select image gallery or photo
 			final Dialog alertDialog = new Dialog(Event.this);
 			// hide default title
 			alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			// update dialog view layout
 			alertDialog.setContentView(R.layout.dlg_camera_gallary);
 
-			// create lnr_gallery variable and link to gallery button in
-			// dlg_camera_gallary layout XML
+			// create lnr_gallery variable and link to gallery button in dlg_camera_gallary layout XML
 			LinearLayout lnr_gallery = (LinearLayout) alertDialog
 					.findViewById(R.id.lnr_gallery);
-			// create lnr_photo variable and link to gallery button in
-			// dlg_camera_gallary layout XML
+			// create lnr_photo variable and link to gallery button in dlg_camera_gallary layout XML
 			LinearLayout lnr_photo = (LinearLayout) alertDialog
 					.findViewById(R.id.lnr_photo);
 
@@ -375,8 +370,7 @@ public class Event extends Activity implements OnClickListener {
 			lnr_gallery.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// create intent to start the default gallery activity on
-					// button press (gallery)
+					// create intent to start the default gallery activity on button press (gallery)
 					Intent galleryIntent = new Intent(
 							Intent.ACTION_PICK,
 							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -389,21 +383,18 @@ public class Event extends Activity implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					if (hasCamera()) {
-						// create intent to start the default camera activity on
-						// button press (photo)
-
+						
+						// create intent to start the default camera activity on button press (photo)
 						// Intent intent = new Intent(
 						// MediaStore.ACTION_IMAGE_CAPTURE);
-						//
 						// startActivityForResult(intent, TAKE_PICTURE);
-
 						Intent intent = new Intent(
 								android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 						startActivityForResult(intent, TAKE_PICTURE);
 
 					} else {
-						// if camera is not available then show the message
-						Toast.makeText(Event.this, "Camera not found",
+						// if camera is not available then show the following message
+						Toast.makeText(Event.this, "Camera Not Found On The Device",
 								Toast.LENGTH_SHORT).show();
 					}
 					alertDialog.cancel();
@@ -414,18 +405,18 @@ public class Event extends Activity implements OnClickListener {
 		} else if (v == btn_save) {
 			// check event name is not empty
 			if (validation()) {
-				// Uses the DBAdapter to execute a request open database
+				// Uses the DBAdapter to execute a request to open database
 				dba.open();
 				// check action mode either edit or add
 				if (isEdit) {
-					// This is allow to update current event data into database
+					// This will update current event data into database
 					if (dba.update_calender(Share.CALENDAR_TABLE, id,
 							et_name.getText().toString().replace("'", "''")
 									.replace("\"", "\"\""), et_time.getText()
 									.toString(), et_desc.getText().toString()
 									.replace("'", "''").replace("\"", "\"\""),
 							path, Share.selectedDate)) {
-						Toast.makeText(Event.this, "Update Successfully",
+						Toast.makeText(Event.this, "Successfully Updated",
 								Toast.LENGTH_SHORT).show();
 
 						// create intent to start the Cale activity
@@ -444,7 +435,7 @@ public class Event extends Activity implements OnClickListener {
 									.toString(), et_desc.getText().toString()
 									.replace("'", "''").replace("\"", "\"\""),
 							path, Share.selectedDate)) {
-						Toast.makeText(Event.this, "Successfully save",
+						Toast.makeText(Event.this, "Successfully Saved",
 								Toast.LENGTH_SHORT).show();
 
 						// create intent to start the Cale activity
@@ -454,7 +445,7 @@ public class Event extends Activity implements OnClickListener {
 						finish();
 					}
 				}
-				// Uses the DBAdapter to execute a request close database
+				// Uses the DBAdapter to execute a request to close the database
 				dba.close();
 			}
 		}
@@ -476,7 +467,7 @@ public class Event extends Activity implements OnClickListener {
 			// check intent action of either gallery or camera
 			if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK
 					&& null != intent) {
-				// if gallary action then get a selected image
+				// if gallery action then get a selected image
 				Uri selectedImage = intent.getData();
 				String[] filePathColumn = { MediaStore.Images.Media.DATA };
 				// get image data
@@ -492,8 +483,8 @@ public class Event extends Activity implements OnClickListener {
 				// create Bitmap image using path variable
 				imageBitmap = BitmapFactory.decodeFile(path);
 				if (imageBitmap != null) {
-					// update Imageview width and height using current device
-					// screen width
+					// update ImageView width and height using current device screen width
+			
 					img_event.getLayoutParams().width = (int) (screenWidth * 0.5);
 					img_event.getLayoutParams().height = (int) (screenWidth * 0.5);
 				}
@@ -505,9 +496,8 @@ public class Event extends Activity implements OnClickListener {
 				this.imageFromCamera(resultCode, intent);
 
 			} else {
-				// Cancel the dialog without selecting of image then show
-				// message
-				Toast.makeText(this, "You haven't picked Image",
+				// Cancel the dialog without selecting of image 
+				Toast.makeText(this, "No Image Chosen",
 						Toast.LENGTH_LONG).show();
 			}
 		} catch (Exception e) {
@@ -520,7 +510,7 @@ public class Event extends Activity implements OnClickListener {
 		updateImageView((Bitmap) data.getExtras().get("data"), resultCode);
 
 		img_event.setImageBitmap(setphoto);
-		// set height and width of the Imageview
+		// set height and width of the ImageView
 		img_event.getLayoutParams().width = (int) (screenWidth * 0.5);
 		img_event.getLayoutParams().height = (int) (screenWidth * 0.5);
 
@@ -558,9 +548,9 @@ public class Event extends Activity implements OnClickListener {
 
 	}
 
-	/**
-	 * Use for Set Font
-	 */
+	
+	// Use for Set Font
+	 
 	void setTypeface() {
 		tv_title.setTypeface(Splash.BOLD);
 		et_name.setTypeface(Splash.HELVETICA);
@@ -570,12 +560,8 @@ public class Event extends Activity implements OnClickListener {
 		btn_save.setTypeface(Splash.BOLD);
 	}
 
-	/**
-	 * Use for event name validation
-	 * 
-	 * @return true : allow to save event data <br/>
-	 *         false: showing the error message with dialog
-	 */
+	// Use for event name validation
+	 
 	@SuppressWarnings("deprecation")
 	public Boolean validation() {
 		Boolean validation = true;
@@ -585,7 +571,7 @@ public class Event extends Activity implements OnClickListener {
 			final AlertDialog eventDialog = new AlertDialog.Builder(Event.this)
 					.create();
 			// set the error text
-			eventDialog.setMessage("Please enter an event name.");
+			eventDialog.setMessage("Please Enter An Event Name");
 
 			// create close button to hide dialog
 			eventDialog.setButton("Close",
@@ -596,26 +582,22 @@ public class Event extends Activity implements OnClickListener {
 						}
 					});
 			eventDialog.show();
-			// update variable if does not allow to save event data
+			// update variable if it does not allow to save event data
 			validation = false;
 		}
 
 		return validation;
 	}
 
-	/**
-	 * Chack Camera is Available or not
-	 * 
-	 * @return
-	 */
+	// check if the camera is aialble or not
+	
 	private boolean hasCamera() {
 		return getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_CAMERA);
 	}
 
-	/**
-	 * Uploaded Image Save in sdcard
-	 */
+	// Image save in sd card
+	
 	private void saveimg() {
 		OutputStream fOut = null;
 		if (Share.ensureSDCardAccess()) {
@@ -639,7 +621,7 @@ public class Event extends Activity implements OnClickListener {
 		}
 	}
 
-	// This method use for double digit formate ie.01 link with Event.java
+	// This method is used for double digit format and link with Event.java
 	public static String pad(int c) {
 		if (c >= 10)
 			return String.valueOf(c);
@@ -647,7 +629,7 @@ public class Event extends Activity implements OnClickListener {
 			return "0" + String.valueOf(c);
 	}
 
-	// show time in 12 hours format ie.12:00 am link with Event.java
+	// show time in 12 hours format and link with Event.java
 	public static String showTime(int hour, int min) {
 		String format;
 		if (hour == 0) {

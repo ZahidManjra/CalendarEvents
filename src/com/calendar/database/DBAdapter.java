@@ -15,14 +15,14 @@ public class DBAdapter
 	private final Context context;
 	//declare DBHelper variable for creating database
 	private static DatabaseHelper DBHelper;
-	//declare db variable for manage sql query data
+	//declare db variable to manage sql query data
 	private static SQLiteDatabase db;
 	
 	public DBAdapter(Context ctx) 
 	{
 		// get activity context
 		this.context = ctx;
-		// create DBHelper variable  of DatabaseHelper for createing database
+		// create DBHelper variable of DatabaseHelper for creating the database
 		DBHelper = new DatabaseHelper(context);
 	}
 	public static class DatabaseHelper extends SQLiteOpenHelper
@@ -45,11 +45,7 @@ public class DBAdapter
 	}
 
 	// ---opens the database---
-	/**
-	 *  get Writable database Object to give a permission for write a data
-	 * @return SQLiteDatabase Object
-	 * @throws SQLException
-	 */
+	
 	public DBAdapter open() throws SQLException 
 	{
 		//Create and/or open a database that will be used for reading and writing. 
@@ -58,20 +54,14 @@ public class DBAdapter
 	}
 
 	// ---closes the database---
-	/**
-	 *   close the current database object
-	 */
+	
 	public void close() {
 		//Close any open database object.
 		DBHelper.close();
 	}
-
-	/**
-	 *  get All Event List
-	 * @return Cursor
-	 * @throws SQLException
-	 */
 	
+	// get all event list
+
 	public Cursor get_calender_list() throws SQLException {
 
 		open();
@@ -89,17 +79,9 @@ public class DBAdapter
 		return mCursor;
 	}
 
-	/**
-	 *  Update Event Records
-	 * @param tableName
-	 * @param id
-	 * @param event_name
-	 * @param event_time
-	 * @param event_des
-	 * @param image_path
-	 * @param event_date
-	 * @return
-	 */
+	
+	 // Update Event Records
+	
 	public Boolean update_calender(String tableName, String id,String event_name, String event_time, String event_des,String image_path, String event_date) {
 		open();
 		//Runs the provided SQL and returns a Cursor over the result set.
@@ -121,10 +103,9 @@ public class DBAdapter
 
 	}
 	
-	/**
-	 *  delete all Records
-	 * @return Cursor
-	 */
+	
+	 // delete all records
+	 
 	public Cursor delete_calender_list() {
 		open();
 		//Runs the provided SQL and returns a Cursor over the result set.
@@ -136,11 +117,8 @@ public class DBAdapter
 		return mCursor;
 	}
 
-	/**
-	 * delete single record to pass id param
-	 * @param id
-	 * @return
-	 */
+	// delete single record 
+	
 	public Cursor delete_calender(String id) {
 		open();
 		//Runs the provided SQL and returns a Cursor over the result set.
@@ -152,16 +130,9 @@ public class DBAdapter
 		return mCursor;
 	}
 
-	/**
-	 *  Add new record
-	 * @param tableName
-	 * @param event_name
-	 * @param event_time
-	 * @param event_des
-	 * @param image_path
-	 * @param event_date
-	 * @return
-	 */
+	
+	  // Add a new record
+	 
 	public boolean insert_calender_list(String tableName, String event_name,String event_time, String event_des, String image_path,	String event_date) {
 		open();
 		db = DBHelper.getWritableDatabase();
@@ -181,12 +152,9 @@ public class DBAdapter
 		return true;
 	}
 
-	/**
-	 *  get list of before 24 hours events
-	 * @param date
-	 * @return
-	 * @throws SQLException
-	 */
+	
+	 // get event list for the calendar date
+	 
 	public Cursor getTomorrow_Calender_EventList(String date) throws SQLException {
 		open();
 		//Runs the provided SQL and returns a Cursor over the result set.

@@ -9,12 +9,12 @@ public class CalendarDayMarker {
 	private int _day;
 	private int _color;
 
-	// simple function to set date .
+	// simple function to set date
 	public CalendarDayMarker(int year, int month, int day, int color) {
 		init(year, month, day, color);
 	}
 
-	// it take day and marke color which is current date or not
+	// get day and mark colour which is current date or not
 	public CalendarDayMarker(Date d, int color) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(d);
@@ -23,13 +23,13 @@ public class CalendarDayMarker {
 				c.get(Calendar.DAY_OF_MONTH), color);
 	}
 
-	// it take day and marke color which is current date or not
+	// get day and mark colour which is current date or not
 	public CalendarDayMarker(Calendar c, int color) {
 		init(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
 				c.get(Calendar.DAY_OF_MONTH), color);
 	}
 
-	// this is for decalear year moth and day
+	// declare year moth and day
 	private void init(int year, int month, int day, int color) {
 		_year = year;
 		_month = month;
@@ -37,7 +37,7 @@ public class CalendarDayMarker {
 		_color = color;
 	}
 
-	// For set value year
+	// set value year
 	public void setYear(int year) {
 		_year = year;
 	}
@@ -47,7 +47,7 @@ public class CalendarDayMarker {
 		return _year;
 	}
 
-	// for set value of month .
+	// set value of month 
 	public void setMonth(int month) {
 		_month = month;
 	}
@@ -57,7 +57,7 @@ public class CalendarDayMarker {
 		return _month;
 	}
 
-	// for set value of day .
+	// set value of day 
 	public void setDay(int day) {
 		_day = day;
 	}
@@ -67,12 +67,12 @@ public class CalendarDayMarker {
 		return _day;
 	}
 
-	// for set value of color .
+	// set value of colour .
 	public void setColor(int color) {
 		_color = color;
 	}
 
-	// give value of color
+	// give value of colour
 	public int getColor() {
 		return _color;
 	}

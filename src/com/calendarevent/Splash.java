@@ -23,17 +23,17 @@ import com.calendardemo.R;
 
 public class Splash extends Activity 
 {
-	// declare InputStream variable for manage database
+	// declare InputStream variable to manage database
 	public static InputStream databaseInputStream1;     
 	
 	private Handler guiThread;
-	// declare Runnable variable for update database data
+	// declare Runnable variable to update database 
 	private Runnable updateTask;
 
 	//create Database
 	final DBAdapter dba = new DBAdapter(this);
 	
-	//Declaration of  fonts Typefases
+	//Declaration of fonts Typefases
 	public static Typeface BOLD,BOLD_OBLIQUE,LIGHT,LIGHT_OBLIQUE,OBLIQUE,HELVETICA;   
 
 	@SuppressLint("SimpleDateFormat")
@@ -42,7 +42,7 @@ public class Splash extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-		//Initializations Font
+		//Initialisation of Fonts
 		BOLD = Typeface.createFromAsset(getAssets(),"Helvetica-Bold.ttf");
 		BOLD_OBLIQUE = Typeface.createFromAsset(getAssets(),"Helvetica-BoldOblique.ttf");
 		LIGHT = Typeface.createFromAsset(getAssets(),"Helvetica-Light.ttf");
@@ -51,7 +51,7 @@ public class Splash extends Activity
 		HELVETICA = Typeface.createFromAsset(getAssets(),"Helvetica.ttf");
 		
 		
-		//Assign currect Date use in letter for Cale.java file
+		//Assign current Date for Cale.java 
 		Date d = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
@@ -77,7 +77,7 @@ public class Splash extends Activity
 				//create Calendar.sql database file on default database path
 				File f = new File("/data/data/com.calendardemo/databases/Calendar.sql");
 				if (f.exists()) {
-					//
+					
 				}
 				else 
 				{
@@ -114,7 +114,7 @@ public class Splash extends Activity
 		protected void onPostExecute(Boolean success) {
 			super.onPostExecute(success);
 			
-			//Waiting for copy data after change activity
+			//Waiting to copy data after change activity
 			call();
 		}
 	}

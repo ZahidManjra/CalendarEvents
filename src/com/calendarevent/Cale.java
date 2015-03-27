@@ -27,21 +27,21 @@ public class Cale extends Activity implements Runnable, OnClickListener
 {
 	// variables to be used
 	
-	// declare array for store calendar table column values
+	// declare array to store calendar table column values
 	public static ArrayList<String> arr_event_id;
 	public static ArrayList<String> arr_event_name;
 	public static ArrayList<String> arr_event_time;
-	public static ArrayList<String> arr_event_descripation;
+	public static ArrayList<String> arr_event_description;
 	public static ArrayList<String> arr_event_img_path;
 	public static ArrayList<String> arr_event_date;
 
-	//declare for Event data rows
+	//declare Event data rows
 	public static LinearLayout lnrLayout_EventList;
 	
-	//declare for  Calendar view
+	//declare Calendar view
 	public static CalendarView _calendar;
 	
-	//Declaration for Add Event
+	//Declaration for Image
 	private ImageButton img_plus; 
 
 	//Declaration for Device Screen size
@@ -53,10 +53,10 @@ public class Cale extends Activity implements Runnable, OnClickListener
 		super.onCreate(savedInstanceState);
 		// set upload layout
 		setContentView(R.layout.cale);
-		// set current device screen window and link to the CalendarView.java
+		// set current device screen window and link to CalendarView.java
 		mDisplay = getWindowManager().getDefaultDisplay();
 		
-		// create Event data rows LinearLayout variable link to LinearLayout in the layout XML
+		// create Event data row LinearLayout variable and link to LinearLayout in the layout XML
 		lnrLayout_EventList = (LinearLayout) findViewById(R.id.forecast_lnrLayoutTransactions);
 		
 		//create calendar view variable and link to CaleView in layout XML
@@ -71,11 +71,11 @@ public class Cale extends Activity implements Runnable, OnClickListener
 		});
 
 		
-		//create calendar event table column data store in variable  and link to the CalendarView.java
+		//create calendar event table column data to store in variable and link to the CalendarView.java
 		arr_event_id = new ArrayList<String>();
 		arr_event_name = new ArrayList<String>();
 		arr_event_time = new ArrayList<String>();
-		arr_event_descripation = new ArrayList<String>();
+		arr_event_description = new ArrayList<String>();
 		arr_event_img_path = new ArrayList<String>();
 		arr_event_date = new ArrayList<String>();
 
@@ -95,28 +95,21 @@ public class Cale extends Activity implements Runnable, OnClickListener
 		thread.start();
 	}
 
-	/**
-	 * Create Calendar day view
-	 */
+	
+	// Create Calendar day view
+	 
 	public static void markDays() {
-		//set days view in calendarview Layout and link to Calendarview.java
+		//set day view in calendarview Layout and link to Calendarview.java
 		_calendar.setDaysWithEvents(new CalendarDayMarker[] { new CalendarDayMarker(Calendar.getInstance(), Color.BLUE) });
 	}
 
-	/**
-	 * Find Current date events
-	 * @param year
-	 * @param month
-	 * @param day
-	 * @return true  : if current date is same <br/>
-	 *         false : current date not match given param
-	 */
+
 	//check Events are available on given year,month and day and Link to the CalendarView.java
 	public static boolean check_date_arratlist(int year, int month, int day) 
 	{
 		for (int i = 0; i < Cale.arr_event_date.size(); i++)
 		{
-			//create variable for year,months and day for matching param
+			//create variable for year,month and day for matching parameter
 			String row[] = Cale.arr_event_date.get(i).toString().split("-");
 			
 			if (Integer.parseInt(row[0]) == year && Integer.parseInt(row[1]) == month && Integer.parseInt(row[2]) == day) {
@@ -126,9 +119,9 @@ public class Cale extends Activity implements Runnable, OnClickListener
 		return false;
 	}
 
-	/**
-	 *  Retrieve current date events data from database 
-	 */
+	
+	 // Retrieve current date events from database 
+	 
 	@Override
 	public void run() 
 	{
@@ -138,17 +131,17 @@ public class Cale extends Activity implements Runnable, OnClickListener
 			arr_event_id.clear();
 			arr_event_name.clear();
 			arr_event_time.clear();
-			arr_event_descripation.clear();
+			arr_event_description.clear();
 			arr_event_img_path.clear();
 			arr_event_date.clear();
 			
-			// initialize an instance (DBAdapter)
+			// initialise an instance (DBAdapter)
 			DBAdapter dba = new DBAdapter(Cale.this);
 			
 			// Uses the DBAdapter to execute a request open database  
 			dba.open();
 			
-			// initialize a Cursor which in return query results data 
+			// initialise a Cursor which in return query results data 
 			Cursor cursor = dba.get_calender_list();
 			
 			// load the Event fields
@@ -191,16 +184,9 @@ public class Cale extends Activity implements Runnable, OnClickListener
 		}
 	};
 
-	/**
-	 * Save Event Fields Data into Array
-	 * 
-	 * @param id
-	 * @param name
-	 * @param time
-	 * @param des
-	 * @param img_path
-	 * @param date
-	 */
+	
+	// Save Event Fields into Array
+	 
 	public void Set_Arraylist(String id, String name, String time, String des,String img_path, String date) 
 	{
 		Calendar cal1 = Calendar.getInstance();
@@ -216,7 +202,7 @@ public class Cale extends Activity implements Runnable, OnClickListener
 			arr_event_id.add(id);
 			arr_event_name.add(name);
 			arr_event_time.add(time);
-			arr_event_descripation.add(des);
+			arr_event_description.add(des);
 			arr_event_img_path.add(img_path);
 			arr_event_date.add(date);
 		}
@@ -227,7 +213,7 @@ public class Cale extends Activity implements Runnable, OnClickListener
 	{
 		if (v == img_plus)         
 		{
-			// create intent to start the Event activity on  button press (img_plus)
+			// create intent to start the Event activity on button press 
 			Intent eventIntent = new Intent(Cale.this, Event.class);  
 			startActivity(eventIntent);
 			finish();

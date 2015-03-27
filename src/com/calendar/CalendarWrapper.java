@@ -18,15 +18,16 @@ public class CalendarWrapper {
 		public void onDateChanged(CalendarWrapper sc);
 	}
 
-//	This class is use for getting how many day in each month because we have custome calander so for each month we need to calculate.
+//	This class is used to calculate how many days in each month due to the use of a custom calendar
 	
 	@SuppressWarnings("deprecation")
 	public CalendarWrapper() {
 		_calendar = Calendar.getInstance();
 
 		_shortDayNames = new String[_calendar.getActualMaximum(Calendar.DAY_OF_WEEK)];
-		_shortMonthNames = new String[_calendar.getActualMaximum(Calendar.MONTH) + 1]; // Months are 0-based so
-														// size is Max + 1
+		_shortMonthNames = new String[_calendar.getActualMaximum(Calendar.MONTH) + 1]; 
+		// Months are 0-based so
+		// size is Max + 1
 
 		for (int i = 0; i < _shortDayNames.length; i++) {
 			_shortDayNames[i] = DateUtils.getDayOfWeekString(i + 1,DateUtils.LENGTH_SHORT);
@@ -37,22 +38,22 @@ public class CalendarWrapper {
 		}
 	}
 
-//	this give all year value like 2005 , 2006
+//	get value of for each year
 	public int getYear() {
 		return _calendar.get(Calendar.YEAR);
 	}
 
-//	this give month value for each year 
+//	get month value for each year 
 	public int getMonth() {
 		return _calendar.get(Calendar.MONTH);
 	}
 
-//	give current month 
+//	get current month 
 	public int getcurrentmonth() {
 		return _calendar.get(Calendar.MONTH);
 	}
 
-//	give how many week in month
+//	get day of week
 	public int getDayOfWeek() {
 		return _calendar.get(Calendar.DAY_OF_WEEK);
 	}
@@ -63,36 +64,37 @@ public class CalendarWrapper {
 	}
 
 	
-//	same for set which include to set value in calender for get it take value 
-	
+//	set the year
 	public void setYear(int value) {
 		_calendar.set(Calendar.YEAR, value);
 		invokeDateChangedListener();
 	}
 
+	// set the year and month
 	public void setYearAndMonth(int year, int month) {
 		_calendar.set(Calendar.YEAR, year);
 		_calendar.set(Calendar.MONTH, month);
 		invokeDateChangedListener();
 	}
-
+	
+	// set  the month
 	public void setMonth(int value) {
 		_calendar.set(Calendar.MONTH, value);
 		invokeDateChangedListener();
 	}
-
+	// set the day
 	public void setDay(int value) {
 		_calendar.set(Calendar.DAY_OF_MONTH, value);
 		invokeDateChangedListener();
 	}
-
+	// add the year
 	public void addYear(int value) {
 		if (value != 0) {
 			_calendar.add(Calendar.YEAR, value);
 			invokeDateChangedListener();
 		}
 	}
-
+	// add the month
 	public void addMonth(int value) {
 		if (value != 0) {
 			_calendar.add(Calendar.MONTH, value);
@@ -100,14 +102,14 @@ public class CalendarWrapper {
 
 		}
 	}
-
+    // add day of month
 	public void addMonthSetDay(int monthAdd, int day) {
 		_calendar.add(Calendar.MONTH, monthAdd);
 		_calendar.set(Calendar.DAY_OF_MONTH, day);
 
 		invokeDateChangedListener();
 	}
-
+	// add the day
 	public void addDay(int value) {
 		if (value != 0) {
 			_calendar.add(Calendar.DAY_OF_MONTH, value);
@@ -123,7 +125,7 @@ public class CalendarWrapper {
 		return _shortMonthNames;
 	}
 
-//	this function which calculate all things like date and moth and set in calender.
+//	function to calculate all things like date and month and set this in the calendar.
 	
 	public int[] get7x6DayArray() {
 		_visibleStartDate = null;
